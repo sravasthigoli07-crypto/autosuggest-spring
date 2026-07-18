@@ -32,6 +32,29 @@ function toggleUser(){
     var userName = document.getElementById("user-name");
     userName.innerHTML = users[id].name;
     var gender = document.getElementById("user-gender");
-    usergender.innerHTML = users[id].gender;
+    gender.innerHTML = users[id].gender;
+
+}
+
+function randomUser() {
+    fetch("https://randomuser.me/api/")
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+
+            var usersData = data.results[0];
+
+            var userImage = document.getElementById("user-image");
+            userImage.src = usersData.picture.large;
+            var userName = document.getElementById("user-name");
+            userName.innerHTML = usersData.name.first + " " + userDate.name.last;
+            var gender = document.getElementById("user-gender");
+            gender.innerHTML = usersData.gender;
+  
+        })
+        .catch(function(err){
+            console.log("Error: " + err);
+        })
 
 }
